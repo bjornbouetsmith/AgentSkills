@@ -1,6 +1,6 @@
 ---
 name: csharp-testing
-description: "Use when c# and .NET testing patterns with xUnit, mocking, integration tests, and test organization best practices. Only for C#/.NET — not for other languages. Triggers on \"csharp-testing\", \"csharp testing\", \"testing\"."
+description: "Use when c# and .NET testing patterns with Mstest, xUnit, mocking, integration tests, and test organization best practices. Only for C#/.NET — not for other languages. Triggers on \"csharp-testing\", \"csharp testing\", \"testing\"."
 ---
 
 # C# Testing Patterns
@@ -86,6 +86,11 @@ New tests must produce the same result on every machine and every run.
 #### MSTest
 For MSTest, use `[TestClass]` and `[TestMethod]` attributes:
 
+Add TestContext to the test class and use it to log output if required.
+```csharp
+public TestContext TestContext { get; set; }
+```
+
 Parameterized tests use `[TestMethod]` with `[DataRow]` and method parameters:
 
 ```csharp
@@ -138,6 +143,7 @@ data with a fixed value and assert the resulting output exactly.
 - Test caching, factory selection, and other stateful behavior explicitly.
 - Do not write tests that only exercise framework behavior or mirror the
   implementation line by line.
+- 
 
 ### Testing complete checklist
 
