@@ -58,4 +58,4 @@ var order = new OrderBuilder()
 | Asserting on `ToString()` output | Assert on typed properties |
 | One giant assertion per test | One logical assertion per test |
 | Test names describing implementation | Name by behavior: `Method_ExpectedResult_WhenCondition` |
-| Ignoring `CancellationToken` | Always pass and verify cancellation |
+| Ignoring `CancellationToken` | Always pass `TextContext.Current.CancellationToken` and verify cancellation |

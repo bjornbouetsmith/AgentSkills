@@ -17,17 +17,14 @@ public sealed class OrderServiceTests
     [Fact]
     public async Task PlaceOrderAsync_ReturnsSuccess_WhenRequestIsValid()
     {
-        // Arrange
         var request = new CreateOrderRequest
         {
             CustomerId = "cust-123",
             Items = [new OrderItem("SKU-001", 2, 29.99m)]
         };
 
-        // Act
         var result = await _sut.PlaceOrderAsync(request, CancellationToken.None);
 
-        // Assert
         result.IsSuccess.Should().BeTrue();
         result.Value.Should().NotBeNull();
         result.Value!.CustomerId.Should().Be("cust-123");
@@ -36,17 +33,14 @@ public sealed class OrderServiceTests
     [Fact]
     public async Task PlaceOrderAsync_ReturnsFailure_WhenNoItems()
     {
-        // Arrange
         var request = new CreateOrderRequest
         {
             CustomerId = "cust-123",
             Items = []
         };
 
-        // Act
         var result = await _sut.PlaceOrderAsync(request, CancellationToken.None);
 
-        // Assert
         result.IsSuccess.Should().BeFalse();
         result.Error.Should().Contain("at least one item");
     }

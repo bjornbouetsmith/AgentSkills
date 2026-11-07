@@ -1,6 +1,6 @@
 ---
 name: csharp-testing
-description: "Use when c# and .NET testing patterns with Mstest, xUnit, mocking, integration tests, and test organization best practices. Only for C#/.NET — not for other languages. Triggers on \"csharp-testing\", \"csharp testing\", \"testing\"."
+description: "Use when c# and .NET testing patterns with xUnit v3, mocking, integration tests, and test organization best practices. Only for C#/.NET — not for other languages. Triggers on \"csharp-testing\", \"csharp testing\", \"testing\"."
 ---
 
 # C# Testing Patterns
@@ -18,7 +18,7 @@ Comprehensive testing patterns for .NET applications using xUnit, Assert, and mo
 
 | Tool | Purpose |
 |---|---|
-| **xUnit** | Test framework (preferred for .NET) or MSTest if repository already uses it |
+| **xUnit** | Test framework (preferred for .NET) |
 | **Moq** | Mocking dependencies |
 | **WebApplicationFactory** | ASP.NET Core integration tests |
 
@@ -83,26 +83,6 @@ New tests must produce the same result on every machine and every run.
 
 ### patterns to use
 
-#### MSTest
-For MSTest, use `[TestClass]` and `[TestMethod]` attributes:
-
-Add TestContext to the test class and use it to log output if required.
-```csharp
-public TestContext TestContext { get; set; }
-```
-
-Parameterized tests use `[TestMethod]` with `[DataRow]` and method parameters:
-
-```csharp
-[TestMethod]
-[DataRow(true)]
-[DataRow(false)]
-public void ProcessCallExecuteTest(bool useShell)
-{
-    var sut = new Something(...);
-}
-```
-
 #### XUnit
 For xUnit, use `[Fact]` for simple tests and `[Theory]` with `[InlineData]` for parameterized tests:
 
@@ -143,7 +123,7 @@ data with a fixed value and assert the resulting output exactly.
 - Test caching, factory selection, and other stateful behavior explicitly.
 - Do not write tests that only exercise framework behavior or mirror the
   implementation line by line.
-- 
+- Aim for at least 80% coverage
 
 ### Testing complete checklist
 
@@ -153,3 +133,4 @@ data with a fixed value and assert the resulting output exactly.
 3. Temporary files and resources are cleaned up.
 4. The focused tests pass.
 5. The full test suite passes.
+6. No //Arrange, //Act, //Assert comments remain in the code.
