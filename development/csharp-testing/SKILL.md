@@ -134,3 +134,4 @@ data with a fixed value and assert the resulting output exactly.
 4. The focused tests pass.
 5. The full test suite passes.
 6. No //Arrange, //Act, //Assert comments remain in the code.
+7. No code analyzer warnings from either xunit or other anylyzers present in tests introduced
